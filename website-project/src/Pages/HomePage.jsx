@@ -7,7 +7,7 @@ function HomePage() {
       {/* Hero section - name, tagline */}
       <Row  className="my-4">
         <Col>
-          <h1 className="display-4">Hi, I'm Bryan welcome to my Portfolio</h1>
+          <h1 className="display-4">Hi, I'm Bryan welcome to my Website!</h1>
         </Col>
       </Row>
 
