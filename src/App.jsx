@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import MusicPage from './pages/MusicPage';
-import GamePage from './pages/GamePage';
-import ShowPage from './pages/ShowPage';
-import SillyPhotos from './pages/SillyPhotos';
-import ProjectsPortfolio from './pages/ProjectsPortfolio';
-import SocialsPage from './pages/SocialsPage';
-import ResumePage from './pages/ResumePage';
+import Callback from './pages/Callback';
+import Navbar from './Components/Navbar';
+import HomePage from './Pages/HomePage';
+import MusicPage from './Pages/MusicPage';
+import GamePage from './Pages/GamePage';
+import ShowPage from './Pages/ShowPage';
+import SillyPhotos from './Pages/SillyPhotos';
+import ProjectsPortfolio from './Pages/ProjectsPortfolio';
+import SocialsPage from './Pages/SocialsPage';
+import ResumePage from './Pages/ResumePage';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/"           element={<HomePage />} />
+        <Route path="/callback"   element={<Callback />} />
         <Route path="/music"      element={<MusicPage />} />
         <Route path="/games"      element={<GamePage />} />
         <Route path="/shows"      element={<ShowPage />} />
