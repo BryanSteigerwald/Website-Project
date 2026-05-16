@@ -26,7 +26,6 @@ export async function loginWithSpotify() {
 
   // Store verifier so getAccessToken can use it later
   localStorage.setItem('code_verifier', codeVerifier);
-  console.log('Verifier saved:', localStorage.getItem('code_verifier'));
   const url = new URL('https://accounts.spotify.com/authorize');
   url.searchParams.append('response_type', 'code');
   url.searchParams.append('client_id', CLIENT_ID);
@@ -65,8 +64,6 @@ export async function getTopTracks() {
 
 export async function getAccessToken(code) {
   const codeVerifier = localStorage.getItem('code_verifier');
-  console.log('Exchanging code:', code);
-  console.log('Using verifier:', codeVerifier);
 
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
@@ -81,7 +78,6 @@ export async function getAccessToken(code) {
   });
 
   const data = await response.json();
-  console.log('Token response:', data); // will show the error if it failed
   localStorage.setItem('spotify_token', data.access_token);
   return data.access_token;
 }

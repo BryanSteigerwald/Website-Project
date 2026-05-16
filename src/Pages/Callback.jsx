@@ -8,12 +8,9 @@ function Callback() {
 
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get('code');
-    console.log('Code from URL:', code);
-    console.log('Code verifier in storage:', localStorage.getItem('code_verifier'));
 
     if (code) {
       getAccessToken(code).then((token) => {
-        console.log('Token received:', token);
         navigate('/music');
       }).catch(err => console.log('Token exchange error:', err));
     }
