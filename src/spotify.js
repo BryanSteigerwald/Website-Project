@@ -81,3 +81,4 @@ export async function getAccessToken(code) {
   localStorage.setItem('spotify_token', data.access_token);
   return data.access_token;
 }
+

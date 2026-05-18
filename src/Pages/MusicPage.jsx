@@ -42,15 +42,24 @@ function MusicPage() {
                       <div className="fw-bold">{track.name}</div>
                       <div className="text-muted small">{track.artists.map(a => a.name).join(', ')}</div>
                       <div className="text-muted small">{track.album.name}</div>
+                      <div className="text-muted small">{new Date(track.duration_ms).toISOString().substr(14, 5)}</div>
+                      <div className="text-muted small">{new Date(track.album.release_date).getFullYear()}</div>
+                      <div className="text-muted small">
+                        {/* plays embeded track */}
+                        <iframe
+                          src={`https://open.spotify.com/embed/track/${track.id}`}
+                          width="100%"
+                          height="80"
+                          frameBorder="0"
+                          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        />
+                      </div>
                     </div>
                   </Card>
                 </Col>
               ))}
             </Row>
           )}
-        </Tab>
-        <Tab eventKey="player" title="Player">
-          {/* <MusicPlayer /> */}
         </Tab>
         <Tab eventKey="genres" title="Genres">
           {/* Genre breakdown or tags */}
