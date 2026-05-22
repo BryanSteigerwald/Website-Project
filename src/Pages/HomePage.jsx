@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import pfp from '../assets/pfp.jpg';
 
 function HomePage() {
   return (
@@ -21,7 +22,7 @@ function HomePage() {
       {/* Profile photo */}
       <Row className="my-5">
         <Col>
-          <p>Fill..</p>
+          <img src={pfp} alt="profile picture" style={{ width: '25%' }} />
         </Col>
       </Row>
       {/* Quick links to other pages */}
@@ -29,12 +30,13 @@ function HomePage() {
         <Col>
           <h2 className="display-5">Explore</h2>
           <ul>
-            <li><a href="/ProjectsPortfolio">Projects</a></li>
-            <li><a href="/ResumePage">Resume</a></li>
-            <li><a href="/MusicPage">Music</a></li>
-            <li><a href="/ShowPage">Shows/Anime</a></li>
-            <li><a href="/SillyPhotos">Photos</a></li>   
-            <li><a href="/SocialsPage">Socials</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/resume">Resume</a></li>
+            <li><a href="/music">Music</a></li>
+            <li><a href="/shows">Shows</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/photos">Photos</a></li>   
+            <li><a href="/socials">Socials</a></li>
           </ul>
         </Col>
       </Row>

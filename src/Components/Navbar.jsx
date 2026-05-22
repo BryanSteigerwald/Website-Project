@@ -25,7 +25,10 @@ function Navbar() {
               <Nav.Link as={Link} to="/music"    active={location.pathname === '/music'}>Music</Nav.Link>
             </Nav.Item>
             <Nav.Item className="nav-item">
-              <Nav.Link as={Link} to="/shows"    active={location.pathname === '/shows'}>Shows/Anime</Nav.Link>
+              <Nav.Link as={Link} to="/shows"    active={location.pathname === '/shows'}>Shows</Nav.Link>
+            </Nav.Item>
+            <Nav.Item className="nav-item">
+              <Nav.Link as={Link} to="/games"  active={location.pathname === '/games'}>Games</Nav.Link>
             </Nav.Item>
             <Nav.Item className="nav-item">
               <Nav.Link as={Link} to="/photos"   active={location.pathname === '/photos'}>Photos</Nav.Link>

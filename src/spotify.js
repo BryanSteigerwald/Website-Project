@@ -1,9 +1,6 @@
 const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const REDIRECT_URI = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
 
-console.log('CLIENT_ID:', CLIENT_ID);
-console.log('REDIRECT_URI:', REDIRECT_URI);
-
 function generateRandomString(length) {
   let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -23,9 +20,8 @@ async function generateCodeChallenge(codeVerifier) {
 export async function loginWithSpotify() {
   const codeVerifier = generateRandomString(128);
   const codeChallenge = await generateCodeChallenge(codeVerifier);
-
-  // Store verifier so getAccessToken can use it later
   localStorage.setItem('code_verifier', codeVerifier);
+
   const url = new URL('https://accounts.spotify.com/authorize');
   url.searchParams.append('response_type', 'code');
   url.searchParams.append('client_id', CLIENT_ID);
@@ -33,7 +29,6 @@ export async function loginWithSpotify() {
   url.searchParams.append('redirect_uri', REDIRECT_URI);
   url.searchParams.append('code_challenge_method', 'S256');
   url.searchParams.append('code_challenge', codeChallenge);
-
   window.location.href = url.toString();
 }
 
@@ -43,28 +38,34 @@ export async function getTopTracks() {
     headers: { Authorization: `Bearer ${token}` },
   });
   const data = await response.json();
-
-  // If token expired or invalid, clear it so login button shows again
   if (!response.ok) {
     localStorage.removeItem('spotify_token');
     return [];
   }
-
-  // before returning i want to filter out duplicate artists, so if an artist has multiple top tracks, only the highest ranked one shows
   const seenArtists = new Set();
-  const uniqueTracks = data.items.filter(track => {
+  return data.items.filter(track => {
     const artist = track.artists[0].name;
     if (seenArtists.has(artist)) return false;
     seenArtists.add(artist);
     return true;
   }).slice(0, 25);
+}
 
-  return uniqueTracks;
+export async function getTopArtists() {
+  const token = localStorage.getItem('spotify_token');
+  const response = await fetch('https://api.spotify.com/v1/me/top/artists?limit=25&time_range=medium_term', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    localStorage.removeItem('spotify_token');
+    return [];
+  }
+  return data.items ?? [];
 }
 
 export async function getAccessToken(code) {
   const codeVerifier = localStorage.getItem('code_verifier');
-
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -76,9 +77,7 @@ export async function getAccessToken(code) {
       code_verifier: codeVerifier,
     }),
   });
-
   const data = await response.json();
   localStorage.setItem('spotify_token', data.access_token);
   return data.access_token;
 }
-
