@@ -7,18 +7,8 @@ const games = [
     cover: '',
     genre: '',
     rating: '',
-    status: '', // 'Playing' | 'Completed' | 'Dropped'
+    status: '', 
     review: '',
-  },
-];
-
-const competitive = [
-  {
-    title: '',
-    cover: '',
-    rank: '',
-    hours: '',
-    notes: '',
   },
 ];
 
@@ -80,31 +70,6 @@ function GamePage() {
                     <div className="text-muted small mb-1">{game.genre}</div>
                     <div className="fw-bold mb-2">⭐ {game.rating}/10</div>
                     <Card.Text className="small">{game.review}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Tab>
-
-        {/* COMPETITIVE TAB */}
-        <Tab eventKey="competitive" title="Competitive">
-          <Row className="g-3 mt-2">
-            {competitive.map((game) => (
-              <Col key={game.title} xs={12} md={6}>
-                <Card className="h-100">
-                  {game.cover && (
-                    <Card.Img
-                      variant="top"
-                      src={game.cover}
-                      style={{ height: '150px', objectFit: 'cover' }}
-                    />
-                  )}
-                  <Card.Body>
-                    <Card.Title className="fw-bold">{game.title}</Card.Title>
-                    <div className="fw-bold mb-1">🏆 Rank: {game.rank}</div>
-                    <div className="text-muted small mb-2">⏱ {game.hours} hours</div>
-                    <Card.Text className="small">{game.notes}</Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
