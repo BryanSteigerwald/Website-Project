@@ -1,14 +1,96 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Badge, Form } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
+
+const shows = [
+  {
+    title: '',
+    cover: '',
+    genre: '',
+    rating: '',
+    status: '',  // 'Watching' | 'Completed' | 'Dropped' | 'Plan to Watch'
+    type: '',    // 'Anime' | 'Show'
+    topPick: false,
+    review: '',
+  },
+];
+
+const statusColor = {
+  'Watching':       'success',
+  'Completed':      'primary',
+  'Dropped':        'danger',
+  'Plan to Watch':  'warning',
+};
 
 function ShowPage() {
-  const [filter, setFilter] = useState('all'); // 'all' | 'anime' | 'shows'
+  const [filter, setFilter] = useState('All');
+  const [typeFilter, setTypeFilter] = useState('All');
+
+  const filtered = shows.filter(s => {
+    const statusMatch = filter === 'All' || (filter === 'Top Picks' ? s.topPick : s.status === filter);
+    const typeMatch = typeFilter === 'All' || s.type === typeFilter;
+    return statusMatch && typeMatch;
+  });
 
   return (
-    <Container>
-      {/* Filter toggle: All / Anime / Shows */}
-      {/* Grid of cards - title, cover image, rating, status (watching/completed/etc) */}
-      {/* Could add a tier list section */}
+    <Container className="py-4">
+      <h2 className="fw-bold mb-3">Shows & Anime</h2>
+
+      {/* Status filters */}
+      <div className="d-flex gap-2 mb-2 flex-wrap">
+        {['All', 'Top Picks', 'Watching', 'Completed', 'Dropped', 'Plan to Watch'].map(s => (
+          <button
+            key={s}
+            onClick={() => setFilter(s)}
+            className={`btn btn-sm ${filter === s ? 'btn-dark' : 'btn-outline-secondary'}`}
+          >
+            {s}
+          </button>
+        ))}
+      </div>
+
+      {/* Type filters */}
+      <div className="d-flex gap-2 mb-4">
+        {['All', 'Anime', 'Show'].map(t => (
+          <button
+            key={t}
+            onClick={() => setTypeFilter(t)}
+            className={`btn btn-sm ${typeFilter === t ? 'btn-dark' : 'btn-outline-secondary'}`}
+          >
+            {t}
+          </button>
+        ))}
+      </div>
+
+      <Row className="g-3">
+        {filtered.map((show) => (
+          <Col key={show.title} xs={12} md={6} lg={4}>
+            <Card className="h-100">
+              {show.cover && (
+                <Card.Img
+                  variant="top"
+                  src={show.cover}
+                  style={{ height: '200px', objectFit: 'cover' }}
+                />
+              )}
+              <Card.Body>
+                <div className="d-flex justify-content-between align-items-start mb-1">
+                  <Card.Title className="fw-bold mb-0">
+                    {show.topPick && <span className="me-1">⭐</span>}
+                    {show.title}
+                  </Card.Title>
+                  <div className="d-flex flex-column gap-1 align-items-end">
+                    <Badge bg={statusColor[show.status] ?? 'secondary'}>{show.status}</Badge>
+                    <Badge bg="dark">{show.type}</Badge>
+                  </div>
+                </div>
+                <div className="text-muted small mb-1">{show.genre}</div>
+                <div className="fw-bold mb-2">⭐ {show.rating}/10</div>
+                <Card.Text className="small">{show.review}</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </Container>
   );
 }
