@@ -11,7 +11,7 @@ const socials = [
   {
     platform: 'LinkedIn',
     handle: 'Bryan Steigerwald',
-    url: 'https://linkedin.com/in/',
+    url: 'https://www.linkedin.com/in/bryan-steigerwald-145601330/',
     color: '#0077b5',
   },
 ];
