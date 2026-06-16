@@ -1,226 +1,366 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
+/* ─── Google Font ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ─── CSS Variables ───────────────────────────────────────── */
+:root {
+  --font:          'Poppins', sans-serif;
+
+  --bg:            #ffffff;
+  --bg-soft:       #f8f7f5;
+  --bg-card:       #ffffff;
+
+  --accent:        #7c6fcd;        /* soft purple */
+  --accent-light:  #ede9fa;
+  --accent-hover:  #6a5db5;
+
+  --text:          #2d2d2d;
+  --text-muted:    #888888;
+  --text-light:    #bbb;
+
+  --border:        #e8e4f0;
+  --border-soft:   #f0eef8;
+
+  --shadow-sm:     0 2px 8px rgba(124, 111, 205, 0.08);
+  --shadow-md:     0 4px 20px rgba(124, 111, 205, 0.12);
+  --radius:        14px;
+  --radius-sm:     8px;
+}
+
+/* ─── Base ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font);
+  font-weight: 600;
+  color: var(--text);
+}
+
+p, span, div {
+  font-family: var(--font);
+}
+
+a {
   color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+a:hover {
+  color: var(--accent-hover);
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
-}
-
-/* Navbar styles */
+/* ─── Navbar ──────────────────────────────────────────────── */
 .navbar {
-  padding: 8px 0;
-  border-bottom: 2px solid var(--border);
+  background-color: #ffffff !important;
+  border-bottom: 1.5px solid var(--border);
+  padding: 14px 0;
+  box-shadow: var(--shadow-sm);
 }
 
-.nav-item {
-  margin-left: 16px;
-  margin-right: 16px;
-
-  @media (max-width: 1024px) {
-    margin: 0 8px;
-  }
+.navbar-brand {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--accent) !important;
+  letter-spacing: -0.3px;
 }
 
 .nav-link {
-  color: white;
-  font-size: 16px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background-color 0.3s, color 0.3s;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted) !important;
+  padding: 6px 14px !important;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s, color 0.2s;
+  margin: 0 2px;
+}
 
-  &:hover {
-    background-color: var(--accent-bg);
-    color: white;
-  }
+.nav-link:hover {
+  background-color: var(--accent-light);
+  color: var(--accent) !important;
+}
 
-  &.active {
-    background-color: var(--accent-bg);
-    color: white;
-    font-weight: bold;
-  }
+.nav-link.active {
+  background-color: var(--accent-light) !important;
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+.navbar-toggler {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ─── Tabs ────────────────────────────────────────────────── */
+.nav-tabs {
+  border-bottom: 1.5px solid var(--border);
+  margin-bottom: 0;
+  gap: 4px;
 }
 
 .nav-tabs .nav-link {
-  color: black;
-  margin: 0% -16px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted) !important;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  padding: 10px 18px !important;
+  margin: 0;
+  background: transparent !important;
+  transition: color 0.2s, border-color 0.2s;
 }
-.mt-3 {
-  margin-top: 1rem !important;
+
+.nav-tabs .nav-link:hover {
+  color: var(--accent) !important;
+  background: transparent !important;
+  border-bottom-color: var(--border);
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--accent) !important;
+  background: transparent !important;
+  border-bottom: 2px solid var(--accent);
+  font-weight: 600;
+}
+
+.tab-content {
+  padding-top: 20px;
+}
+
+/* ─── Cards ───────────────────────────────────────────────── */
+.card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-body {
+  padding: 1.1rem;
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.card-text {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ─── Badges ──────────────────────────────────────────────── */
+.badge {
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 0.73rem;
+  border-radius: 20px;
+  padding: 4px 10px;
+  letter-spacing: 0.2px;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────── */
+.btn {
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 0.88rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.btn-dark {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-dark:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-outline-secondary {
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--accent-light);
+  border-color: var(--accent-light);
+  color: var(--accent);
+}
+
+.btn-success {
+  background-color: #5cb88a;
+  border-color: #5cb88a;
+}
+
+.btn-success:hover {
+  background-color: #4aa577;
+  border-color: #4aa577;
+}
+
+.btn-outline-success {
+  color: #5cb88a;
+  border-color: #5cb88a;
+}
+
+.btn-outline-success:hover {
+  background-color: #5cb88a;
+  border-color: #5cb88a;
+  color: white;
+}
+
+/* ─── Filter buttons (Games / Shows page) ─────────────────── */
+.btn-sm {
+  font-size: 0.8rem;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+/* ─── Page headings ───────────────────────────────────────── */
+h2.fw-bold {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ─── Text utilities ──────────────────────────────────────── */
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.fw-bold {
+  font-weight: 600 !important;
+}
+
+/* ─── HomePage hero ───────────────────────────────────────── */
+.home-hero {
+  padding: 60px 0 40px;
+}
+
+.home-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.home-hero .lead {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.home-hero img.rounded-circle {
+  border: 3px solid var(--accent-light);
+  box-shadow: var(--shadow-md);
+}
+
+/* Quick link cards on homepage */
+.quick-link-card {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  transition: all 0.2s;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-link-card:hover {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ─── Music page ──────────────────────────────────────────── */
+.music-track-card {
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.music-track-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+/* ─── Spotify login button ────────────────────────────────── */
+.btn-success.spotify-login {
+  background: #1db954;
+  border-color: #1db954;
+  border-radius: 20px;
+  padding: 10px 28px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-success.spotify-login:hover {
+  background: #17a349;
+  border-color: #17a349;
+}
+
+/* ─── Misc ────────────────────────────────────────────────── */
+.py-4 {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+img {
+  border-radius: var(--radius-sm);
+}
+
+iframe {
+  border-radius: var(--radius-sm);
 }
