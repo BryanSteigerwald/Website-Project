@@ -2,16 +2,101 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
 
 const shows = [
+  // --- Top picks (10/10 from AniList) ---
   {
-    title: '',
+    title: 'Bocchi the Rock!',
     cover: '',
-    genre: '',
-    rating: '',
-    status: '',  // 'Watching' | 'Completed' | 'Dropped' | 'Plan to Watch'
-    type: '',    // 'Anime' | 'Show'
+    genre: 'Comedy, Music, Slice of Life',
+    rating: 10,
+    status: 'Completed',
+    type: 'Anime',
+    topPick: true,
+    review: '',
+  },
+  {
+    title: 'Code Geass: Hangyaku no Lelouch R2',
+    cover: '',
+    genre: 'Mecha, Drama, Sci-Fi',
+    rating: 10,
+    status: 'Completed',
+    type: 'Anime',
+    topPick: true,
+    review: '',
+  },
+  {
+    title: 'Kimi no Suizou wo Tabetai',
+    cover: '',
+    genre: 'Drama, Romance',
+    rating: 10,
+    status: 'Completed',
+    type: 'Anime',
+    topPick: true,
+    review: '',
+  },
+  {
+    title: 'Made in Abyss',
+    cover: '',
+    genre: 'Adventure, Drama, Fantasy, Mystery',
+    rating: 10,
+    status: 'Completed',
+    type: 'Anime',
+    topPick: true,
+    review: '',
+  },
+  {
+    title: 'One Piece',
+    cover: '',
+    genre: 'Adventure, Fantasy',
+    rating: 10,
+    status: 'Completed',
+    type: 'Anime',
+    topPick: true,
+    review: '',
+  },
+  {
+    title: 'Steins;Gate',
+    cover: '',
+    genre: 'Sci-Fi, Thriller, Drama',
+    rating: 10,
+    status: 'Completed',
+    type: 'Anime',
+    topPick: true,
+    review: '',
+  },
+
+  // --- Live action shows ---
+  {
+    title: 'Breaking Bad',
+    cover: '',
+    genre: 'Crime, Drama, Thriller',
+    rating: '10',
+    status: 'Completed',
+    type: 'Show',
     topPick: false,
     review: '',
   },
+  {
+    title: 'Better Call Saul',
+    cover: '',
+    genre: 'Crime, Drama',
+    rating: '10',
+    status: 'Completed',
+    type: 'Show',
+    topPick: false,
+    review: '',
+  },
+
+  // --- Add more below following the same shape ---
+  // {
+  //   title: 'Chainsaw Man',
+  //   cover: '',
+  //   genre: 'Action, Horror, Supernatural',
+  //   rating: 9,
+  //   status: 'Completed',
+  //   type: 'Anime',
+  //   topPick: false,
+  //   review: '',
+  // },
 ];
 
 const statusColor = {
